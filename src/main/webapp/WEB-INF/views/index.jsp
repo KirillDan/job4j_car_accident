@@ -19,22 +19,20 @@
 			<thead>
 				<tr>
 					<th>id</th>
-					<th>имя</th>
-					<th>фамилия</th>
-					<th>пол</th>
-					<th>описание</th>
+					<th>название</th>
+					<th>текст</th>
+					<th>адрес</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${table}" var="t">
 				<tr>
 					<td><c:out value="${t.id}" /></td>
-					<td><c:out value="${t.firstname}" /></td>
-					<td><c:out value="${t.lastname}" /></td>
-					<td><c:out value="${t.gender}" /></td>
-					<td><c:out value="${t.description}" /></td>
+					<td><c:out value="${t.name}" /></td>
+					<td><c:out value="${t.text}" /></td>
+					<td><c:out value="${t.address}" /></td>
 				</tr>
-				</c:forEach>
+			</c:forEach>
 			</tbody>
 		</table>
 	</div>
