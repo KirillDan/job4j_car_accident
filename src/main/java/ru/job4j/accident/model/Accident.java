@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Accident {
-	private int id;
+	private Integer id;
     private String name;
     private String text;
     private String address;   
@@ -16,10 +16,10 @@ public class Accident {
 		this.text = text;
 		this.address = address;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

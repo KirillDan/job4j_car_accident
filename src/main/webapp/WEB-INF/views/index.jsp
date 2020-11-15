@@ -5,7 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -13,6 +17,9 @@
 <title>Accident</title>
 </head>
 <body>
+	<div class="container">
+		<a href="<c:url value='/create'/>">Добавить инцидент</a>
+	</div>
 	<div class="container">
 		<h2>Таблица</h2>
 		<table class="table">
@@ -25,14 +32,17 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${table}" var="t">
-				<tr>
-					<td><c:out value="${t.id}" /></td>
-					<td><c:out value="${t.name}" /></td>
-					<td><c:out value="${t.text}" /></td>
-					<td><c:out value="${t.address}" /></td>
-				</tr>
-			</c:forEach>
+				<c:forEach items="${table}" var="t">
+					<tr>
+						<td><a href='<c:url value="/edit?id=${t.id}"/>'>
+								<i class="fa fa-edit mr-3"></i>
+						</a>
+						<c:out value="${t.id}" /></td>
+						<td><c:out value="${t.name}" /></td>
+						<td><c:out value="${t.text}" /></td>
+						<td><c:out value="${t.address}" /></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
