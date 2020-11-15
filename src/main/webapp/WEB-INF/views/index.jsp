@@ -27,6 +27,7 @@
 				<tr>
 					<th>id</th>
 					<th>название</th>
+					<th>тип</th>
 					<th>текст</th>
 					<th>адрес</th>
 				</tr>
@@ -39,6 +40,7 @@
 						</a>
 						<c:out value="${t.id}" /></td>
 						<td><c:out value="${t.name}" /></td>
+						<td><c:out value="${t.type.name}" /></td>
 						<td><c:out value="${t.text}" /></td>
 						<td><c:out value="${t.address}" /></td>
 					</tr>

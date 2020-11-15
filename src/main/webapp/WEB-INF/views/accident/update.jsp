@@ -8,13 +8,19 @@
 		<table>
 			<tr>
 				<td>Название:</td>
-				<td><input type='text' name='name'
-					value="${accident.name}"></td>
+				<td><input type='text' name='name' value="${accident.name}"></td>
+			</tr>
+			<tr>
+				<td>Тип:</td>
+				<td><select name="type.id">
+						<c:forEach var="type" items="${types}">
+							<option value="${type.id}">${type.name}</option>
+						</c:forEach>
+				</select>
 			</tr>
 			<tr>
 				<td>Текст:</td>
-				<td><input type='text' name='text'
-					value="${accident.text}"></td>
+				<td><input type='text' name='text' value="${accident.text}"></td>
 			</tr>
 			<tr>
 				<td>Адрес:</td>
