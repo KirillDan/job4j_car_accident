@@ -1,5 +1,8 @@
 package ru.job4j.accident.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,6 +12,7 @@ public class Accident {
     private String text;
     private String address; 
     private AccidentType type;
+    private Set<Rule> rules;
 	public Accident() {
 	}
 	public Accident(int id, String name, String text, String address) {
@@ -47,8 +51,22 @@ public class Accident {
 	public void setType(AccidentType type) {
 		this.type = type;
 	}
+	public Set<Rule> getRules() {
+		return rules;
+	}
+	public void setRules(Set<Rule> rules) {
+		this.rules = rules;
+	}
+	public void addRule(Rule rule) {
+		if (this.rules == null) {
+			this.rules = new HashSet<Rule>();
+		}
+		this.rules.add(rule);
+	}
 	@Override
 	public String toString() {
-		return "Accident [id=" + id + ", name=" + name + ", text=" + text + ", address=" + address + "]";
+		return "Accident [id=" + id + ", name=" + name + ", text=" + text + ", address=" + address + ", type=" + type
+				+ ", rules=" + rules + "]";
 	}
+	
 }

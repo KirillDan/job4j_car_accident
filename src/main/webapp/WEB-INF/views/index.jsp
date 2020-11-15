@@ -28,6 +28,7 @@
 					<th>id</th>
 					<th>название</th>
 					<th>тип</th>
+					<th>статьи</th>
 					<th>текст</th>
 					<th>адрес</th>
 				</tr>
@@ -41,6 +42,11 @@
 						<c:out value="${t.id}" /></td>
 						<td><c:out value="${t.name}" /></td>
 						<td><c:out value="${t.type.name}" /></td>
+						<td>
+							<c:forEach items="${t.rules}" var="rule">
+								<c:out value="${rule.name}" /></br>
+							</c:forEach>
+						</td>
 						<td><c:out value="${t.text}" /></td>
 						<td><c:out value="${t.address}" /></td>
 					</tr>
