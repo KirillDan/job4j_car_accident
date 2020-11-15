@@ -23,11 +23,10 @@ public class AccidentControl {
         return "accident/create";
     }
     
-    @GetMapping("/edit")
+    @GetMapping("/update")
     public String edit(@RequestParam Integer id ,Model model) {
-    	model.addAttribute("id", id);
-    	model.addAttribute("repository", repository);
-    	return "accident/edit";
+    	model.addAttribute("accident", repository.findById(id));
+    	return "accident/update";
     }
 
     @PostMapping("/save")

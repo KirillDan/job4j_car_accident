@@ -34,7 +34,7 @@
 			<tbody>
 				<c:forEach items="${table}" var="t">
 					<tr>
-						<td><a href='<c:url value="/edit?id=${t.id}"/>'>
+						<td><a href='<c:url value="/update?id=${t.id}"/>'>
 								<i class="fa fa-edit mr-3"></i>
 						</a>
 						<c:out value="${t.id}" /></td>

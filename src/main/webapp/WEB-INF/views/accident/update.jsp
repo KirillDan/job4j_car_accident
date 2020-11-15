@@ -4,31 +4,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body>
-	<%
-	Integer id = (Integer) request.getAttribute("id");
-	AccidentMem repository = (AccidentMem) request.getAttribute("repository");
-	Accident accident = new Accident(0, "", "", "");
-	if (id != null) {
-		accident = repository.findById(id);
-	}
-	%>
-	<form action="<c:url value='/save'/>" method='POST'>
-		<input type="hidden" name="id" value="<%= accident.getId()%>">
+	<form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
 		<table>
 			<tr>
 				<td>Название:</td>
 				<td><input type='text' name='name'
-					value="<%=accident.getName()%>"></td>
+					value="${accident.name}"></td>
 			</tr>
 			<tr>
 				<td>Текст:</td>
 				<td><input type='text' name='text'
-					value="<%=accident.getText()%>"></td>
+					value="${accident.text}"></td>
 			</tr>
 			<tr>
 				<td>Адрес:</td>
 				<td><input type='text' name='address'
-					value="<%=accident.getAddress()%>"></td>
+					value="${accident.address}"></td>
 			</tr>
 			<tr>
 				<td colspan='2'><input name="submit" type="submit"
