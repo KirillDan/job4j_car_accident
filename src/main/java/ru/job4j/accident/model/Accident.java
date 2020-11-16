@@ -3,11 +3,8 @@ package ru.job4j.accident.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Accident {
-	private Integer id;
+	private int id;
     private String name;
     private String text;
     private String address; 
@@ -21,11 +18,15 @@ public class Accident {
 		this.text = text;
 		this.address = address;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		if (id == null) {
+			this.id = 0;
+		} else {
+			this.id = id;
+		}
 	}
 	public String getName() {
 		return name;

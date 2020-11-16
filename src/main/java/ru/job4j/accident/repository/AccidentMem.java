@@ -2,6 +2,7 @@ package ru.job4j.accident.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import ru.job4j.accident.model.Rule;
 @Repository
 public class AccidentMem {
     private HashMap<Integer, Accident> accidents = new HashMap<Integer, Accident>();
-    private int ids = 0;
+    private AtomicInteger ids = new AtomicInteger(0);
     private HashMap<Integer, String> types = new HashMap<Integer, String>();
     private HashMap<Integer, String> rules = new HashMap<Integer, String>();
     
@@ -31,9 +32,9 @@ public class AccidentMem {
 			String name = this.types.get(id);
 			value.getType().setName(name);
 		}
-    	if (value.getId() == null) {
-    		value.setId(++ids);
-            this.accidents.put(ids, value);
+    	if (value.getId() == 0) {
+    		value.setId(this.ids.incrementAndGet());
+            this.accidents.put(ids.get(), value);
     	} else {
     		this.accidents.put(value.getId(), value);
     	}
