@@ -14,22 +14,30 @@ import ru.job4j.accident.model.Rule;
 public class AccidentMem {
     private HashMap<Integer, Accident> accidents = new HashMap<Integer, Accident>();
     private AtomicInteger ids = new AtomicInteger(0);
-    private HashMap<Integer, String> types = new HashMap<Integer, String>();
-    private HashMap<Integer, String> rules = new HashMap<Integer, String>();
+    private HashMap<Integer, AccidentType> types = new HashMap<Integer, AccidentType>();
+    private HashMap<Integer, Rule> rules = new HashMap<Integer, Rule>();
     
     public AccidentMem() {
-    	types.put(1, "Две машины");
-        types.put(2, "Машина и человек");
-        types.put(3, "Машина и велосипед");
-        rules.put(1, "Статья. 1");
-        rules.put(2, "Статья. 2");
-        rules.put(3, "Статья. 3");
+    	types.put(1, AccidentType.of(1, "Две машины"));
+        types.put(2, AccidentType.of(2, "Машина и человек"));
+        types.put(3, AccidentType.of(3, "Машина и велосипед"));
+        rules.put(1, Rule.of(1, "Статья. 1"));
+        rules.put(2, Rule.of(2, "Статья. 2"));
+        rules.put(3, Rule.of(3, "Статья. 3"));
 	}
+    
+    public Collection<AccidentType> getTypes() {
+    	return this.types.values();
+    }
+    
+    public Collection<Rule> getRules() {
+    	return this.rules.values();
+    }
 
 	public void add(Accident value) {
 		if (value.getType() != null) {
 			Integer id = value.getType().getId();
-			String name = this.types.get(id);
+			String name = this.types.get(id).getName();
 			value.getType().setName(name);
 		}
     	if (value.getId() == 0) {
@@ -43,7 +51,7 @@ public class AccidentMem {
 	public void add(Accident value, String[] ruleIds) {
 		for (String strId : ruleIds) {
 			Integer id = Integer.valueOf(strId);
-			value.addRule(Rule.of(id, this.rules.get(id)));
+			value.addRule(Rule.of(id, this.rules.get(id).getName()));
 		}
 		this.add(value);
 	}

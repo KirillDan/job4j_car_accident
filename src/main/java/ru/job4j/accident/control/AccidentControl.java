@@ -20,17 +20,14 @@ import ru.job4j.accident.repository.AccidentMem;
 @Controller
 public class AccidentControl {
     private final AccidentMem repository;
-    private List<AccidentType> types = new ArrayList<>();
+    private List<AccidentType> types;
     private List<Rule> rules = new ArrayList<>();
 
     public AccidentControl(AccidentMem repository) {
         this.repository = repository;
-        types.add(AccidentType.of(1, "Две машины"));
-        types.add(AccidentType.of(2, "Машина и человек"));
-        types.add(AccidentType.of(3, "Машина и велосипед"));
-        rules.add(Rule.of(1, "Статья. 1"));
-        rules.add(Rule.of(2, "Статья. 2"));
-        rules.add(Rule.of(3, "Статья. 3"));
+        this.types = new ArrayList<>(this.repository.getTypes());
+        this.rules = new ArrayList<>(this.repository.getRules());
+
     }
 
     @GetMapping("/create")
