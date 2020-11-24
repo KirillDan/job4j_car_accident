@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 @Controller
 public class AccidentControl {
-    private final AccidentMem repository;
+    private final AccidentJdbcTemplate repository;
     private List<AccidentType> types;
     private List<Rule> rules = new ArrayList<>();
 
-    public AccidentControl(AccidentMem repository) {
+    public AccidentControl(AccidentJdbcTemplate repository) {
         this.repository = repository;
         this.types = new ArrayList<>(this.repository.getTypes());
         this.rules = new ArrayList<>(this.repository.getRules());
@@ -48,7 +48,7 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
     	String[] ids = req.getParameterValues("rIds");
-    	repository.add(accident, ids);
+    	repository.save(accident, ids);
         return "redirect:/";
     }
 }

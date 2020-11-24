@@ -4,13 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 @Controller
 public class IndexControl {
-	private AccidentMem repository;
+	private AccidentJdbcTemplate repository;
 	
-    public IndexControl(AccidentMem repository) {
+    public IndexControl(AccidentJdbcTemplate repository) {
 		this.repository = repository;
 	}
 
