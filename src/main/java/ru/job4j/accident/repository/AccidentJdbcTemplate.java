@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.util.HashSet;
 import java.util.List;
 
-@Repository
 public class AccidentJdbcTemplate {
 	private final JdbcTemplate jdbc;
 	private final String ACCIDENT_TYPE_INSERT = "INSERT INTO accident_type(id, name) VALUES (?, ?)";
@@ -110,10 +109,6 @@ public class AccidentJdbcTemplate {
 		}).get(0);
 	}
 
-//	"INSERT INTO accident(name, text, address, accident_type_id) VALUES (?, ?, ?, ?)"
-//	"UPDATE accident SET name = ?, text = ?, address = ?, accident_type_id = ? WHERE id = ?"
-//	"INSERT INTO accident_rule(accident_id, rule_id) VALUES (?, ?)"
-//	"DELETE FROM accident_rule WHERE accident_id = ?";
 	public Accident save(Accident accident, String[] ruleIds) {
 		if (accident.getId() == 0) {
 			KeyHolder keyHolder = new GeneratedKeyHolder();

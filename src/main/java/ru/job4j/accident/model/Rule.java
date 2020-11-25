@@ -2,12 +2,21 @@ package ru.job4j.accident.model;
 
 import java.util.Objects;
 
-public class Rule {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "rule")
+public class Rule {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public static Rule of(int id, String name) {
+	public static Rule of(int id, String name) {
         Rule rule = new Rule();
         rule.id = id;
         rule.name = name;
