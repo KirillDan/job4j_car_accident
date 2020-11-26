@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.service.AccidentService;
 
 @Controller
 public class AccidentControl {
-    private final AccidentHibernate repository;
+    private final AccidentService service;
     private List<AccidentType> types;
     private List<Rule> rules = new ArrayList<>();
 
-    public AccidentControl(AccidentHibernate repository) {
-        this.repository = repository;
-        this.types = new ArrayList<>(this.repository.getTypes());
-        this.rules = new ArrayList<>(this.repository.getRules());
+    public AccidentControl(AccidentService service) {
+        this.service = service;
+        this.types = new ArrayList<>(this.service.getTypes());
+        this.rules = new ArrayList<>(this.service.getRules());
 
     }
 
@@ -39,16 +39,16 @@ public class AccidentControl {
     
     @GetMapping("/update")
     public String edit(@RequestParam Integer id , Model model) {
-    	model.addAttribute("accident", repository.findById(id));
+    	model.addAttribute("accident", service.findById(id));
     	model.addAttribute("types", types);
-    	 model.addAttribute("rules", rules);
+    	model.addAttribute("rules", rules);
     	return "accident/update";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
     	String[] ids = req.getParameterValues("rIds");
-    	repository.save(accident, ids);
+    	service.save(accident, ids);
         return "redirect:/";
     }
 }

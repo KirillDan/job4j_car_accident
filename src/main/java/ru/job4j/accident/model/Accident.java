@@ -25,8 +25,8 @@ public class Accident {
     private String address; 
     @OneToOne
     private AccidentType type;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Rule> rules;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Rule> rules = new HashSet<Rule>();
 	public Accident() {
 	}
 	public Accident(int id, String name, String text, String address) {
@@ -76,9 +76,6 @@ public class Accident {
 		this.rules = rules;
 	}
 	public void addRule(Rule rule) {
-		if (this.rules == null) {
-			this.rules = new HashSet<Rule>();
-		}
 		this.rules.add(rule);
 	}
 	@Override
