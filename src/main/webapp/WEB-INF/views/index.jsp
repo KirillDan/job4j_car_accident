@@ -18,7 +18,14 @@
 </head>
 <body>
 	<div class="container">
-		<a href="<c:url value='/create'/>">Добавить инцидент</a>
+		<div class="row">
+			<ul class="nav">
+				<li class="nav-item"><a class="nav-link"
+					href="<c:url value='/create'/>">Добавить инцидент</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<c:url value='/logout'/>">Выйти</a></li>
+			</ul>
+		</div>
 	</div>
 	<div class="container">
 		<h2>Таблица</h2>
@@ -36,17 +43,15 @@
 			<tbody>
 				<c:forEach items="${table}" var="t">
 					<tr>
-						<td><a href='<c:url value="/update?id=${t.id}"/>'>
-								<i class="fa fa-edit mr-3"></i>
-						</a>
-						<c:out value="${t.id}" /></td>
+						<td><a href='<c:url value="/update?id=${t.id}"/>'> <i
+								class="fa fa-edit mr-3"></i>
+						</a> <c:out value="${t.id}" /></td>
 						<td><c:out value="${t.name}" /></td>
 						<td><c:out value="${t.type.name}" /></td>
-						<td>
-							<c:forEach items="${t.rules}" var="rule">
-								<c:out value="${rule.name}" /></br>
-							</c:forEach>
-						</td>
+						<td><c:forEach items="${t.rules}" var="rule">
+								<c:out value="${rule.name}" />
+								</br>
+							</c:forEach></td>
 						<td><c:out value="${t.text}" /></td>
 						<td><c:out value="${t.address}" /></td>
 					</tr>
