@@ -28,6 +28,9 @@
 		</div>
 	</div>
 	<div class="container">
+		<div>Login as : ${user.username}</div>
+	</div>
+	<div class="container">
 		<h2>Таблица</h2>
 		<table class="table">
 			<thead>
